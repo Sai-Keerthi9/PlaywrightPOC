@@ -14,7 +14,7 @@ test('Successful login', async ({ loginPage, page }) => {
 })
 
 
-test.only('Failed login', async ({loginPage, page})=>{
+test('Failed login', async ({loginPage, page})=>{
 
     await page.goto('/');
     await loginPage.username().fill(loginData.inCorrectUsername);
