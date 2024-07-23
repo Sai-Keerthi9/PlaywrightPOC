@@ -1,0 +1,11 @@
+{
+    "firstName" : "Sai",
+    "lastName" : "Keerthi",
+    "country" : "United Kingdom",
+    "town" : "London",
+    "postalCode" : "E1W 2RG",
+
+    "addressLine1" : "London",
+    "addressType" : "Home",
+    "organization" : "ACV Property Insurance"
+}
