@@ -1,8 +1,10 @@
-import { test, expect } from '../shared/fixtures/base.ts';
+import { test, expect } from '@playwright/test';
 import loginData from '../shared/data/loginData.json';
+import {LoginPage} from '../shared/pages/loginPage';
 
-test('Successful login', async ({ loginPage, page }) => {
-   
+test('Successful login', async ({ page }) => {
+   const loginPage = new LoginPage(page);
+
     await page.goto('/');
     await loginPage.username().fill(loginData.userName);
     await loginPage.password().fill(loginData.password);
@@ -14,7 +16,8 @@ test('Successful login', async ({ loginPage, page }) => {
 })
 
 
-test('Failed login', async ({loginPage, page})=>{
+test('Failed login', async ({ page})=>{
+    const loginPage = new LoginPage(page);
 
     await page.goto('/');
     await loginPage.username().fill(loginData.inCorrectUsername);

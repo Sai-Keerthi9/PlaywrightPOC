@@ -17,18 +17,18 @@ test('Account Creation', async ({ loginPage, accountPage, page }) => {
     await accountPage.postalCode().fill(accountDetails.postalCode);
 
     await accountPage.searchButton().click();
-    // await page.waitForTimeout(1000);
-    await accountPage.createAccount().waitFor({state:'visible'});
+    await page.waitForTimeout(2000);
+    await accountPage.createAccount().scrollIntoViewIfNeeded();
     await accountPage.createAccount().click();
-    await accountPage.selectDropdown('Person')
+    await accountPage.selectDropdown('Person');
 
     await accountPage.addressLine1().fill(accountDetails.addressLine1);
     await accountPage.addressType().selectOption(accountDetails.addressType);
     await accountPage.organization().fill(accountDetails.organization);
     await accountPage.orgSearch().click();
 
-    await page.waitForTimeout(1000);
+    
+    await page.waitForLoadState('networkidle');
     await accountPage.updateButton().click();
 
-    await page.pause();
 })
