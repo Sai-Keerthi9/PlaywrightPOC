@@ -3,14 +3,14 @@ import { Locator, Page } from "@playwright/test";
 const authFile = 'playwright/.auth/user.json';
 export class LoginPage {
     public page: Page;
-    readonly username: string;
-    readonly password: string;
-    readonly loginButton: string;
 
     constructor(page: Page) {
         this.page = page;
-        this.username = 'input[name="Login-LoginScreen-LoginDV-username"]';
-        this.password = 'input[type="password"]';
-        this.loginButton = 'div[aria-label="Log In"]';
     }
+     
+    username() : Locator {return this.page.locator('input[name="Login-LoginScreen-LoginDV-username"]');}
+    password() : Locator{return this.page.locator('input[type="password"]');}
+    loginButton() : Locator{return this.page.locator('div[aria-label="Log In"]');}
+    errorMessage() : Locator{return this.page.locator('#Login-LoginScreen-LoginFormMessage div')}
+
 }

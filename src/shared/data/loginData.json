@@ -1,4 +1,7 @@
 {
     "userName" : "su",
-    "password" : "gw"
+    "password" : "gw",
+    "inCorrectUsername" : "use",
+    "inCorrectPassword" : "abs",
+    "errorMessage" : "Your username or password may be incorrect. Please try again. If the problem persists, please contact your administrator."
 }
