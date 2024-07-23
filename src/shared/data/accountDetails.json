@@ -1,11 +1,17 @@
 {
-    "firstName" : "Sai",
-    "lastName" : "Keerthi",
+    "firstName" : "William",
+    "lastName" : "Jhones",
     "country" : "United Kingdom",
     "town" : "London",
     "postalCode" : "E1W 2RG",
 
     "addressLine1" : "London",
     "addressType" : "Home",
-    "organization" : "ACV Property Insurance"
+    "organization" : "ACV Property Insurance",
+    "negTC_both" : {
+        "company" : "Alpha Analytix",
+        "firstName" : "William",
+        "lastName" : "Lucas",
+        "errorMsg": "Please specify either a company name or a person name, but not both."
+    }
 }

@@ -31,6 +31,7 @@ export default defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
+    // baseURL: 'http://in-pnq-coe31:5180/pc/PolicyCenter.do',
     baseURL: 'https://pc-dev2-gwcpdev.capgem.zeta1-andromeda.guidewire.net/PolicyCenter.do',
     
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */

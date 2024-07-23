@@ -10,7 +10,9 @@ export class AccountPage {
     account(): Locator{return this.page.locator('div[id="TabBar-AccountTab"]');}
     accountSubMenu(): Locator{return this.page.locator('div[id="TabBar-AccountTab"] div[data-gw-click="toggleSubMenu"]')}
     dropdown(): Locator{return this.page.locator('div[class="gw-subMenu gw-open"][role="menu"]');}
+    errorMessage(): Locator{return this.page.locator('div[class*="gw-MessagesWidget--group-error"] div[class="gw-message"]');}
     
+    company(): Locator{return this.page.locator('div[id*="GlobalContactNameInputSet"] input');}
     firstName():Locator {return this.page.locator('input[name*="FirstName"][type="text"]');}
     lastName():Locator {return this.page.locator('input[name*="LastName"][type="text"]');}
     country():Locator {return this.page.locator('select[name*="Country"]');}
@@ -22,7 +24,10 @@ export class AccountPage {
     addressType():Locator {return this.page.getByLabel('Address Type');}
     organization():Locator {return this.page.getByLabel('Organization', { exact: true });}
     orgSearch():Locator {return this.page.getByLabel('Select Organization...');}
-    updateButton():Locator {return this.page.getByRole('button', { name: 'Update' })}
+    updateButton():Locator {return this.page.getByRole('button', { name: 'Update' });}
+
+    detailsTitle(): Locator {return this.page.locator('div[aria-label="Details"] span[class="gw-TitleText"]')}
+    accountHolder(): Locator {return this.page.locator('div[id*="AccountHolder_Input"] div[data-gw-getset="text"]')}
 
     async selectDropdown(value: string) {
         await this.dropdown().getByLabel(value).click();

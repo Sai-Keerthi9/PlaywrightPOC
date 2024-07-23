@@ -27,8 +27,18 @@ test('Account Creation', async ({ loginPage, accountPage, page }) => {
     await accountPage.organization().fill(accountDetails.organization);
     await accountPage.orgSearch().click();
 
-    
     await page.waitForLoadState('networkidle');
     await accountPage.updateButton().click();
+
+})
+
+test('TC05 Account reflecting in Account Page', async ({ loginPage, accountPage, page }) => {
+   
+    await page.goto('/');
+
+    await accountPage.account().click();
+
+    await expect(accountPage.detailsTitle()).toHaveText('Details');
+    await expect(accountPage.accountHolder()).toHaveText(accountDetails.firstName+' '+accountDetails.lastName);
 
 })
