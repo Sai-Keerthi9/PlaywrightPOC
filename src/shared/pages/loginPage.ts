@@ -11,12 +11,12 @@ export class LoginPage {
      
     username() : Locator {return this.page.locator('input[name="Login-LoginScreen-LoginDV-username"]');}
     password() : Locator{return this.page.locator('input[type="password"]');}
-    loginButton() : Locator{return this.page.locator('div[aria-label="Log In"]');}
+    loginButton() : Locator{return this.page.getByText('LILog In');}
     errorMessage() : Locator{return this.page.locator('#Login-LoginScreen-LoginFormMessage div')}
 
 
     async login() {
-        await this.page.goto('/');
+        await this.page.goto(loginData.URL);
         await this.username().fill(loginData.userName);
         await this.password().fill(loginData.password);
         await this.loginButton().click();
