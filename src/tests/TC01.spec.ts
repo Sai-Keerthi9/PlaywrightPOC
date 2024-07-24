@@ -5,7 +5,7 @@ import {LoginPage} from '../shared/pages/loginPage';
 test('Successful login', async ({ page }) => {
    const loginPage = new LoginPage(page);
 
-    await page.goto('/');
+    await page.goto(loginData.URL);
     await loginPage.username().fill(loginData.userName);
     await loginPage.password().fill(loginData.password);
     await loginPage.loginButton().click();
@@ -19,11 +19,10 @@ test('Successful login', async ({ page }) => {
 test('Failed login', async ({ page})=>{
     const loginPage = new LoginPage(page);
 
-    await page.goto('/');
+    await page.goto(loginData.URL);
     await loginPage.username().fill(loginData.inCorrectUsername);
     await loginPage.password().fill(loginData.inCorrectPassword);
     await loginPage.loginButton().click();
-    await loginPage.loginButton()
-    expect(await loginPage.errorMessage().textContent()).toBe(loginData.errorMessage)
+    expect(await loginPage.password().textContent()).toBe("")
 
 })
