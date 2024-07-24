@@ -42,6 +42,7 @@ test('Account Creation', async ({ loginPage, accountPage, page }) => {
     await accountPage.updateButton().click()
 
     await page.waitForLoadState('networkidle')
+    await page.pause();
     expect(await accountPage.accountHolderPostCreation().textContent()).toBe(accountDetails.firstName+" "+accountDetails.lastName)
     
 })
