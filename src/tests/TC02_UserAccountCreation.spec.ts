@@ -1,9 +1,17 @@
 import accountDetails from '../shared/data/accountDetails.json';
 import loginData from '../shared/data/loginData.json';
 import { expect, test } from '../shared/fixtures/base.ts';
+import { ReadAndWriteExcel } from '../shared/utility/read_and_write_excel.ts';
+
+const readAndWriteExcel = new ReadAndWriteExcel('Account Creation', 'C:\Users\nipannee\PlaywrightPOC\src\shared\data\Book1.xlsx')
 
 test.describe('Account Creation', ()=> {
-    test('Account Creation with full data', async ({ loginPage, accountPage, page }) => {
+    test.only('Account Creation with full data', async ({ loginPage, accountPage, page }) => {
+
+        // const value = await readAndWriteExcel.readValue('firstName')
+        // console.log(value)
+
+        await page.pause()
         await page.goto(loginData.URL);
         await accountPage.accountSubMenu().click();
         await accountPage.selectDropdown('New Account');
@@ -44,9 +52,12 @@ test.describe('Account Creation', ()=> {
     
         await page.waitForLoadState('networkidle')
         await accountPage.producerCode().selectOption(accountDetails.producerCode)
-        await accountPage.updateButton().click()
+        
+        Promise.all([
+            page.waitForLoadState('networkidle'),
+            accountPage.updateButton().click()
+        ])
     
-        await page.waitForLoadState('networkidle')
         await expect(await accountPage.accountHolderPostCreation()).toHaveText(accountDetails.firstName+" "+accountDetails.lastName)
         
     })
