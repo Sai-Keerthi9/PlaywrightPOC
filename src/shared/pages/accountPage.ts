@@ -9,7 +9,6 @@ export class AccountPage {
 
     account(): Locator{return this.page.locator('div[id="TabBar-AccountTab"]');}
     accountSubMenu(): Locator{return this.page.locator('div[id="TabBar-AccountTab"] div[data-gw-click="toggleSubMenu"]')}
-    dropdown(): Locator{return this.page.locator('div[class*="gw-subMenu gw-open"] div[class*="gw-action--inner"]');}
     errorMessage(): Locator{return this.page.locator('div[class*="gw-MessagesWidget--group-error"] div[class="gw-message"]');}
     missingFieldErrorMessage(): Locator{return this.page.locator('div .gw-message');}
     
@@ -27,7 +26,7 @@ export class AccountPage {
     mobilePhone():Locator{return this.page.locator('input[name*="CellPhone"]');}
     primaryPhone(): Locator{return this.page.locator('select[name*="PrimaryPhone"]')}
     primaryEmail(): Locator{return this.page.locator('input[name*="EmailAddress1"]')}
-    addressLine1():Locator {return this.page.locator('input[name="CreateAccount-CreateAccountScreen-CreateAccountDV-AddressInputSet-globalAddressContainer-GlobalAddressInputSet-AddressLine1"]');}
+    addressLine1():Locator {return this.page.locator('input[name*="AddressLine1"]');}
     addressType():Locator {return this.page.locator('select[name="CreateAccount-CreateAccountScreen-CreateAccountDV-AddressType"]');}
     organization():Locator {return this.page.locator('input[name="OrganizationSearchPopup-OrganizationSearchPopupScreen-OrganizationSearchDV-GlobalContactNameInputSet-Name"]');}
     orgSearch():Locator {return this.page.locator('#CreateAccount-CreateAccountScreen-CreateAccountDV-ProducerSelectionInputSet-Producer-SelectOrganization');}
@@ -41,8 +40,8 @@ export class AccountPage {
     accountHolder(): Locator {return this.page.locator('div[id*="AccountHolder_Input"] div[class*="gw-ActionValueWidget"]')}
     createdAccountName() : Locator {return this.page.locator('#NewAccount-NewAccountScreen-NewAccountSearchResultsLV-0-Name div .gw-value-readonly-wrapper')}
     
-    async selectDropdown(value: string) {
-        await this.dropdown().getByText(value).click();
-    }
+    officePhone() : Locator {return this.page.locator('input[name*="CreateAccountContactInputSet-Phone"]')}
+    serviceTier() : Locator {return this.page.locator('select[name*="ServiceTier"]');}
+    orgType() : Locator {return this.page.locator('select[name*="OrgType"]')}
 
 }

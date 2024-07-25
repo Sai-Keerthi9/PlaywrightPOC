@@ -3,18 +3,17 @@ import loginData from '../shared/data/loginData.json';
 import { expect, test } from '../shared/fixtures/base.ts';
 import { ReadAndWriteExcel } from '../shared/utility/read_and_write_excel.ts';
 
-const readAndWriteExcel = new ReadAndWriteExcel('Account Creation', 'C:\Users\nipannee\PlaywrightPOC\src\shared\data\Book1.xlsx')
+const readAndWriteExcel = new ReadAndWriteExcel('Account Creation', 'src/shared/data/Book1.xlsx')
 
-test.describe('Account Creation', ()=> {
-    test.only('Account Creation with full data', async ({ loginPage, accountPage, page }) => {
+test.describe('Account Creation for Person', ()=> {
+    test('Account Creation with full data', async ({ loginPage, accountPage, pageUtils, page }) => {
 
-        // const value = await readAndWriteExcel.readValue('firstName')
-        // console.log(value)
-
-        await page.pause()
+        const value = await readAndWriteExcel.readValue('firstName')
+        console.log(value)
+        
         await page.goto(loginData.URL);
         await accountPage.accountSubMenu().click();
-        await accountPage.selectDropdown('New Account');
+        await pageUtils.selectDropdown('New Account');
     
         await accountPage.firstName().click();
         await accountPage.firstName().fill(accountDetails.firstName);
@@ -32,7 +31,7 @@ test.describe('Account Creation', ()=> {
     
         await accountPage.createAccount().scrollIntoViewIfNeeded();
         await accountPage.createAccount().click();
-        await accountPage.selectDropdown(accountDetails.accountType);
+        await pageUtils.selectDropdown(accountDetails.accountType);
     
         await accountPage.homePhone().fill(accountDetails.homePhone);
         await accountPage.workPhone().fill(accountDetails.workPhone);
@@ -61,11 +60,11 @@ test.describe('Account Creation', ()=> {
         await expect(await accountPage.accountHolderPostCreation()).toHaveText(accountDetails.firstName+" "+accountDetails.lastName)
         
     })
-    test('Mandate Field Filled Check', async ({ loginPage, accountPage, page }) => {
+    test('Mandate Field Filled Check', async ({ loginPage, pageUtils, accountPage, page }) => {
    
         await page.goto(loginData.URL);
         await accountPage.accountSubMenu().click();
-        await accountPage.selectDropdown('New Account');
+        await await pageUtils.selectDropdown('New Account');('New Account');
     
         await accountPage.firstName().click();
         await accountPage.firstName().fill(accountDetails.firstName);
@@ -78,17 +77,17 @@ test.describe('Account Creation', ()=> {
     
         await accountPage.createAccount().scrollIntoViewIfNeeded();
         await accountPage.createAccount().click();
-        await accountPage.selectDropdown(accountDetails.accountType);
+        await await pageUtils.selectDropdown('New Account');(accountDetails.accountType);
         await accountPage.updateButton().click();
         
         await expect(accountPage.missingFieldErrorMessage().first()).toHaveText(accountDetails.errorCodeMissingFilel)
     
     })
-    test('Name Of The Account Holder Already Exist', async ({ loginPage, accountPage, page }) => {
+    test('Name Of The Account Holder Already Exist', async ({ loginPage, pageUtils, accountPage, page }) => {
    
         await page.goto(loginData.URL);
         await accountPage.accountSubMenu().click();
-        await accountPage.selectDropdown('New Account');
+        await await pageUtils.selectDropdown('New Account');('New Account');
     
         await accountPage.firstName().click()
         await accountPage.firstName().fill(accountDetails.firstName);
@@ -101,11 +100,11 @@ test.describe('Account Creation', ()=> {
     
         await expect(accountPage.createdAccountName()).toHaveText(accountDetails.firstName+" "+accountDetails.lastName)
     })
-    test('Test to Enter Both Person and Company Details', async ({ loginPage, accountPage, page }) => {
+    test('Test to Enter Both Person and Company Details', async ({ loginPage, pageUtils, accountPage, page }) => {
        
         await page.goto(loginData.URL);
         await accountPage.accountSubMenu().click();
-        await accountPage.selectDropdown('New Account');
+        await await pageUtils.selectDropdown('New Account');('New Account');
     
         await accountPage.company().click()
         await accountPage.company().fill(accountDetails.negTC_both.company);

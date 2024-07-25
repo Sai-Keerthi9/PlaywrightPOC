@@ -21,5 +21,18 @@
         "firstName" : "William",
         "lastName" : "Lucas",
         "errorMsg": "Please specify either a company name or a person name, but not both."
+    },
+    "companyAccount" : {
+        "CompanyName" : "Quantum Leap",
+        "account" : "Company",
+        "officePhone" : "+44 0121 222 3333 x1234",
+        "primaryEmail" : "quantumLeap@outlook.com",
+        "serviceTier" : "Gold Customer",
+        "country" : "United Kingdom",
+        "address1" : "London",
+        "town" : "London",
+        "postalCode" : "E1W 2RG",
+        "addressType" : "Business",
+        "orgType" : "Common ownership"
     }
 }

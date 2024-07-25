@@ -1,15 +1,14 @@
 
 import { test as base } from '@playwright/test';
-import { LoginPage } from '../pages/loginPage';
 import { AccountPage } from '../pages/accountPage';
-import fs from 'fs';
-import path from 'path';
+import { LoginPage } from '../pages/loginPage';
+import { pageUtils } from '../utils/pageUtils';
 
 // Declare the types of your fixtures.
 type MyFixtures = {
     loginPage: LoginPage;
     accountPage: AccountPage;
-    // storageState: string;
+    pageUtils: pageUtils;
 };
 
 export const test = base.extend<MyFixtures>({
@@ -22,7 +21,10 @@ export const test = base.extend<MyFixtures>({
     },
     accountPage: async ({ page }, use) => {
         await use(new AccountPage(page));
-    }
+    },
+    pageUtils:  async ({ page }, use) => {
+        await use(new pageUtils(page));
+    },
 });
 export { expect } from '@playwright/test';
 
