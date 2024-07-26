@@ -3,12 +3,15 @@ import { test as base } from '@playwright/test';
 import { AccountPage } from '../pages/accountPage';
 import { LoginPage } from '../pages/loginPage';
 import { pageUtils } from '../utils/pageUtils';
+import { ReadAndWriteExcel } from '../utils/read_and_write_excel'
+
 
 // Declare the types of your fixtures.
 type MyFixtures = {
     loginPage: LoginPage;
     accountPage: AccountPage;
     pageUtils: pageUtils;
+    readAndWriteExcel: ReadAndWriteExcel;
 };
 
 export const test = base.extend<MyFixtures>({
@@ -24,6 +27,9 @@ export const test = base.extend<MyFixtures>({
     },
     pageUtils:  async ({ page }, use) => {
         await use(new pageUtils(page));
+    },
+    readAndWriteExcel:  async ({ page }, use) => {
+        await use(new ReadAndWriteExcel('Account Creation', 'src/shared/data/Book1.xlsx'));
     },
 });
 export { expect } from '@playwright/test';

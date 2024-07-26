@@ -18,9 +18,9 @@ export class AccountPage {
     country():Locator {return this.page.locator('select[name*="Country"]');}
     city():Locator {return this.page.locator('input[name*="City"][type="text"]');}
     postalCode():Locator {return this.page.locator('input[name*="PostalCode"][type="text"]');}
-    searchButton():Locator {return this.page.locator('#NewAccount-NewAccountScreen-NewAccountSearchDV-SearchAndResetInputSet-SearchLinksInputSet-Search');}
-    createAccount():Locator {return this.page.getByText('CNCreate New Account');}
-
+    searchButton():Locator {return this.page.getByRole('button', { name: 'Search' });}
+    createAccount():Locator {return this.page.getByRole('button', { name: 'Create New Account' });}
+    createAccountOptionMenu():Locator {return this.page.getByRole('button', { name: 'Create New Account' });}
     homePhone():Locator{return this.page.locator('input[name*="HomePhone"]');}
     workPhone(): Locator{return this.page.locator('input[name*="CreateAccountContactInputSet-Phone-GlobalPhoneInputSet"]');}
     mobilePhone():Locator{return this.page.locator('input[name*="CellPhone"]');}

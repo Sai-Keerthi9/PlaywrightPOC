@@ -1,34 +1,30 @@
 import accountDetails from '../shared/data/accountDetails.json';
 import loginData from '../shared/data/loginData.json';
 import { expect, test } from '../shared/fixtures/base.ts';
-import { ReadAndWriteExcel } from '../shared/utility/read_and_write_excel.ts';
 
-const readAndWriteExcel = new ReadAndWriteExcel('Account Creation', 'src/shared/data/Book1.xlsx')
 
 test.describe('Account Creation for Person', ()=> {
-    test('Account Creation with full data', async ({ loginPage, accountPage, pageUtils, page }) => {
+    test('Account Creation with full data', async ({ loginPage, accountPage, pageUtils, page, readAndWriteExcel}) => {
 
         const value = await readAndWriteExcel.readValue('firstName')
         console.log(value)
         
-        await page.goto(loginData.URL);
+        await page.goto('/pc/PolicyCenter.do');
         await accountPage.accountSubMenu().click();
         await pageUtils.selectDropdown('New Account');
     
         await accountPage.firstName().click();
-        await accountPage.firstName().fill(accountDetails.firstName);
+        await accountPage.firstName().fill(await readAndWriteExcel.readValue('firstName'));
         await accountPage.lastName().fill(accountDetails.lastName);
     
         await accountPage.country().selectOption(accountDetails.country);
         await page.waitForLoadState('networkidle');
         await accountPage.city().fill(accountDetails.town);
         await accountPage.postalCode().fill(accountDetails.postalCode);
-    
-        Promise.all([
-            page.waitForLoadState('networkidle'),
-            accountPage.searchButton().click()
-        ])
-    
+       
+        await accountPage.searchButton().click()
+        await page.waitForLoadState('networkidle')
+
         await accountPage.createAccount().scrollIntoViewIfNeeded();
         await accountPage.createAccount().click();
         await pageUtils.selectDropdown(accountDetails.accountType);
@@ -56,28 +52,26 @@ test.describe('Account Creation for Person', ()=> {
             page.waitForLoadState('networkidle'),
             accountPage.updateButton().click()
         ])
-    
+        await page.pause()
         await expect(await accountPage.accountHolderPostCreation()).toHaveText(accountDetails.firstName+" "+accountDetails.lastName)
         
     })
     test('Mandate Field Filled Check', async ({ loginPage, pageUtils, accountPage, page }) => {
    
-        await page.goto(loginData.URL);
+        await page.goto('/pc/PolicyCenter.do');
         await accountPage.accountSubMenu().click();
-        await await pageUtils.selectDropdown('New Account');('New Account');
+        await pageUtils.selectDropdown('New Account');
     
         await accountPage.firstName().click();
         await accountPage.firstName().fill(accountDetails.firstName);
         await accountPage.lastName().fill(accountDetails.lastName);
     
-        Promise.all([
-            page.waitForLoadState('networkidle'),
-            accountPage.searchButton().click()
-        ])
+        await accountPage.searchButton().click()
+        await page.waitForLoadState('networkidle')
     
         await accountPage.createAccount().scrollIntoViewIfNeeded();
         await accountPage.createAccount().click();
-        await await pageUtils.selectDropdown('New Account');(accountDetails.accountType);
+        await pageUtils.selectDropdown(accountDetails.accountType);
         await accountPage.updateButton().click();
         
         await expect(accountPage.missingFieldErrorMessage().first()).toHaveText(accountDetails.errorCodeMissingFilel)
@@ -85,24 +79,22 @@ test.describe('Account Creation for Person', ()=> {
     })
     test('Name Of The Account Holder Already Exist', async ({ loginPage, pageUtils, accountPage, page }) => {
    
-        await page.goto(loginData.URL);
+        await page.goto('/pc/PolicyCenter.do');
         await accountPage.accountSubMenu().click();
-        await await pageUtils.selectDropdown('New Account');('New Account');
+        await pageUtils.selectDropdown('New Account');
     
         await accountPage.firstName().click()
         await accountPage.firstName().fill(accountDetails.firstName);
         await accountPage.lastName().fill(accountDetails.lastName);
         
-        Promise.all([
-            page.waitForLoadState('load'),
-            accountPage.searchButton().click()
-        ])
+        await accountPage.searchButton().click()
+        await page.waitForLoadState('networkidle')
     
         await expect(accountPage.createdAccountName()).toHaveText(accountDetails.firstName+" "+accountDetails.lastName)
     })
     test('Test to Enter Both Person and Company Details', async ({ loginPage, pageUtils, accountPage, page }) => {
        
-        await page.goto(loginData.URL);
+        await page.goto('/pc/PolicyCenter.do');
         await accountPage.accountSubMenu().click();
         await await pageUtils.selectDropdown('New Account');('New Account');
     
@@ -111,10 +103,8 @@ test.describe('Account Creation for Person', ()=> {
         await accountPage.firstName().fill(accountDetails.firstName);
         await accountPage.lastName().fill(accountDetails.lastName);
     
-       Promise.all([
-            page.waitForLoadState('load'),
-            accountPage.searchButton().click()
-        ])
+        await accountPage.searchButton().click()
+        await page.waitForLoadState('networkidle')
         
         await expect(await accountPage.errorMessage()).toHaveText(accountDetails.negTC_both.errorMsg);
     

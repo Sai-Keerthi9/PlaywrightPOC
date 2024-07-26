@@ -16,7 +16,7 @@ export class LoginPage {
 
 
     async login() {
-        await this.page.goto(loginData.URL);
+        await this.page.goto('/pc/PolicyCenter.do');
         await this.username().fill(loginData.userName);
         await this.password().fill(loginData.password);
         await this.loginButton().click();
