@@ -16,4 +16,7 @@ export class submissionPage {
         let selectButton: Locator =  this.tableRows().filter({ has: this.productNames().getByText(value)}).locator(this.selectButton);
         return selectButton;
     }
+    nextButton(): Locator{return this.page.locator('div[class*="ToolbarButtonWidget"]').getByText('Next')}
+    quoteButton(): Locator{return this.page.locator('div[class*="ToolbarButtonWidget"]').getByText('Quote')}
+    bindOptions(): Locator{return this.page.locator('div[class*="ToolbarButtonWidget"]').getByText('Bind Options')}
 }

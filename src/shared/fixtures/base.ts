@@ -1,17 +1,21 @@
 
 import { test as base } from '@playwright/test';
 import { AccountPage } from '../pages/accountPage';
+import { HomePage } from '../pages/home';
 import { LoginPage } from '../pages/loginPage';
+import { submissionPage } from '../pages/submissionPage';
 import { pageUtils } from '../utils/pageUtils';
-import { ReadAndWriteExcel } from '../utils/read_and_write_excel'
+import { ReadAndWriteExcel } from '../utils/read_and_write_excel';
 
 
 // Declare the types of your fixtures.
 type MyFixtures = {
     loginPage: LoginPage;
+    homePage: HomePage;
     accountPage: AccountPage;
     pageUtils: pageUtils;
     readAndWriteExcel: ReadAndWriteExcel;
+    submissionPage: submissionPage;
 };
 
 export const test = base.extend<MyFixtures>({
@@ -22,8 +26,14 @@ export const test = base.extend<MyFixtures>({
         // Use the fixture value in the test.
         await use(loginPage);
     },
+    homePage: async ({ page }, use) => {
+        await use(new HomePage(page));
+    },
     accountPage: async ({ page }, use) => {
         await use(new AccountPage(page));
+    },
+    submissionPage: async ({ page }, use) => {
+        await use(new submissionPage(page));
     },
     pageUtils:  async ({ page }, use) => {
         await use(new pageUtils(page));

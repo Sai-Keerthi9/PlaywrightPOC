@@ -1,6 +1,6 @@
 import { Locator, Page } from "@playwright/test";
 
-export class submissionPage {
+export class HomePage {
     page : Page
     readonly expandButton : string;
 
@@ -23,5 +23,8 @@ export class submissionPage {
     }
     
 
-    actions(): Locator {return this.page.locator('div[role="button"][aria-label="Actions"]')}
+    actions(): Locator {
+        return this.page.getByRole('button', { name: 'Actions' })
+        // return this.page.locator('div[data-gw-menu-group="Actions"] div[class="gw-action--expand-button gw-no-pointer"]')
+    }
 }
