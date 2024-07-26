@@ -5,7 +5,7 @@ import {LoginPage} from '../shared/pages/loginPage';
 test('Successful login', async ({ page }) => {
    const loginPage = new LoginPage(page);
 
-    await page.goto(loginData.URL);
+    await page.goto('/pc/PolicyCenter.do');
     await loginPage.username().fill(loginData.userName);
     await loginPage.password().fill(loginData.password);
     await loginPage.loginButton().click();
@@ -19,7 +19,7 @@ test('Successful login', async ({ page }) => {
 test('Failed login', async ({ page})=>{
     const loginPage = new LoginPage(page);
 
-    await page.goto(loginData.URL);
+    await page.goto('/pc/PolicyCenter.do');
     await loginPage.username().fill(loginData.inCorrectUsername);
     await loginPage.password().fill(loginData.inCorrectPassword);
     await loginPage.loginButton().click();

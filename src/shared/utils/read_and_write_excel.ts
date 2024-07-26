@@ -28,7 +28,7 @@ export class ReadAndWriteExcel {
         return worksheet;
     }
 
-    async readValue(searchText: string) {
+    async readValue(searchText: string): Promise<string> {
         const worksheet = await this.readExcel();
         let output = { row: -1, column: -1 };
 
@@ -36,7 +36,7 @@ export class ReadAndWriteExcel {
             row.eachCell((cell, colNumber) => {
                 if (cell.value === searchText) {
                     output.row = rowNumber;
-                    output.column = colNumber + 1; // Adjusted column number to be 1-based
+                    output.column = colNumber + 1; // Adjusted column number to get value
                 }
             });
         });
@@ -46,6 +46,7 @@ export class ReadAndWriteExcel {
         }
 
         // Return the value found at the specified cell
+        const vallue = worksheet.getCell(output.row, output.column).value
         return worksheet.getCell(output.row, output.column).value;
     }
 }
