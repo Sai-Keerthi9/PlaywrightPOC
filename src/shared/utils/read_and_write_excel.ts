@@ -46,7 +46,32 @@ export class ReadAndWriteExcel {
         }
 
         // Return the value found at the specified cell
-        const vallue = worksheet.getCell(output.row, output.column).value
-        return worksheet.getCell(output.row, output.column).value;
+        const vallue = worksheet.getCell(output.row, output.column).value;
+        return (vallue !== null && vallue !== undefined ? vallue.toString() : 'not found');
+        
+    }
+
+
+    async readAssertionValue(searchText: string): Promise<string> {
+        const worksheet = await this.readExcel();
+        let output = { row: -1, column: -1 };
+
+        worksheet.eachRow((row, rowNumber) => {
+            row.eachCell((cell, colNumber) => {
+                if (cell.value === searchText) {
+                    output.row = rowNumber;
+                    output.column = colNumber + 2; // Adjusted column number to get value
+                }
+            });
+        });
+
+        if (output.row === -1 || output.column === -1) {
+            throw new Error(`Value "${searchText}" not found in the worksheet`);
+        }
+
+        // Return the value found at the specified cell
+        const vallue = worksheet.getCell(output.row, output.column).value;
+        return (vallue !== null && vallue !== undefined ? vallue.toString() : 'not found');
+        
     }
 }
