@@ -50,7 +50,7 @@ test.describe('Account Creation for Person', ()=> {
             accountPage.updateButton().click()
         ])
         
-        await expect(await accountPage.accountHolderPostCreation()).toHaveText(await readAndWriteExcel.readValue('accountHolderName'))
+        await expect(await accountPage.accountHolderPostCreation()).toHaveText(await readAndWriteExcel.readAssertionValue('accountHolderName'))
         
     })
 
@@ -94,7 +94,7 @@ test.describe('Account Creation for Person', ()=> {
     })
 
 
-    test.only('Test to Enter Both Person and Company Details', async ({ loginPage, readAndWriteExcel, pageUtils, accountPage, page }) => {
+    test('Test to Enter Both Person and Company Details', async ({ loginPage, readAndWriteExcel, pageUtils, accountPage, page }) => {
        
         await page.goto('/pc/PolicyCenter.do');
         await accountPage.accountSubMenu().click();
@@ -108,7 +108,7 @@ test.describe('Account Creation for Person', ()=> {
         await accountPage.searchButton().click()
         await page.waitForLoadState('networkidle')
         
-        await expect(await accountPage.errorMessage()).toHaveText(await readAndWriteExcel.readAssertionValue('errorMsg'));
+        await expect(await accountPage.errorMessage()).toHaveText(await readAndWriteExcel.readAssertionValue('companyErrorMsg'));
     
     })
 })
