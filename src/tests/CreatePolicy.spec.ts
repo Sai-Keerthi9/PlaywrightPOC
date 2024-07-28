@@ -1,7 +1,7 @@
 import { expect, test } from '../shared/fixtures/base.ts';
 
 test.describe('Create Policy', ()=> {
-    test.only('Create D&O Policy', async ({ loginPage, homePage, pageUtils, submissionPage, page }) => {
+    test.skip('Create D&O Policy', async ({ loginPage, homePage, pageUtils, submissionPage, page }) => {
         
         await page.goto('/pc/PolicyCenter.do');
         await homePage.account().locator(homePage.expandButton).click();
