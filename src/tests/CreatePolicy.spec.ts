@@ -8,7 +8,7 @@ test.describe('Create Policy', ()=> {
         let accNumber:string = await accountPage.createNewAccount(accountDetails.companyAccountUS);
          
         const submId = await submissionPage.createSubmission(accNumber);
-        await expect(submId).toMatch(/^\d{10}$/);
+        await expect(submId).toMatch(submissionPage.idNumberFormat);
 
         await submissionPage.quoteSubmission();
         await expect(submissionPage.submStatus()).toHaveText('Quoted')

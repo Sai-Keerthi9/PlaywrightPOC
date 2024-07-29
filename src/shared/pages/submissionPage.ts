@@ -6,10 +6,12 @@ import { HomePage } from "./home";
 export class SubmissionPage {
     readonly page : Page;
     readonly selectButton: string;
+    readonly idNumberFormat: RegExp;
 
     constructor(page: Page) {
         this.page = page;
         this.selectButton = 'td[id*="Select"] div[role="button"]';
+        this.idNumberFormat = /^\d{10}$/;
     }
 
     visualisedProductsTab(): Locator {return this.page.locator('div[aria-label="Visualized Products"]')}

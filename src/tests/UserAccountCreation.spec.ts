@@ -92,7 +92,7 @@ test.describe('Account Creation for Person', ()=> {
     })
 
 
-    test('Test to Enter Both Person and Company Details', async ({ loginPage, readAndWriteExcel, pageUtils, accountPage, page }) => {
+    test('Verify Exclusive Entry: Person or Company Details', async ({ loginPage, readAndWriteExcel, pageUtils, accountPage, page }) => {
        
         await page.goto('/pc/PolicyCenter.do');
         await accountPage.accountSubMenu().click();

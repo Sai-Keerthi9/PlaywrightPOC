@@ -1,6 +1,6 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import loginData from '../shared/data/loginData.json';
-import {LoginPage} from '../shared/pages/loginPage';
+import { LoginPage } from '../shared/pages/loginPage';
 
 test('Successful login', async ({ page }) => {
    const loginPage = new LoginPage(page);
