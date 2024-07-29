@@ -1,5 +1,3 @@
-import accountDetails from '../shared/data/accountDetails.json';
-import loginData from '../shared/data/loginData.json';
 import { expect, test } from '../shared/fixtures/base.ts';
 
 
