@@ -1,4 +1,5 @@
 import { defineConfig, devices, PlaywrightTestConfig } from '@playwright/test';
+import { on } from 'events';
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -32,7 +33,7 @@ export default defineConfig( {
     baseURL: 'http://localhost:8180',
     
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    trace: 'on',
 
   },
 
@@ -42,13 +43,20 @@ export default defineConfig( {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'], 
         baseURL: 'http://localhost:8180/pc/PolicyCenter.do',
-        viewport : {width: 1250, height: 600},},
+        viewport : {width: 1250, height: 600},
+      screenshot: 'on',
+    trace: 'retain-on-failure' },
         
     },
 
     // {
     //   name: 'firefox',
-    //   use: { ...devices['Desktop Firefox'] },
+    //   use: { ...devices['Desktop Firefox'], 
+    //   baseURL: 'http://localhost:8180/pc/PolicyCenter.do',
+    //   viewport : {width: 1250, height: 600},
+    //   screenshot: 'only-on-failure',
+    //   trace: 'retain-on-failure'
+    //    },
     // },
 
     // {

@@ -19,7 +19,6 @@ test.describe('Account Creation for Company', ()=> {
         await pageUtils.selectDropdown(await readAndWriteExcel.readValue('account'));
     
         await accountPage.officePhone().click()
-        await page.pause()
         await accountPage.officePhone().fill(await readAndWriteExcel.readValue('companyOfficePhone'));
         await accountPage.primaryEmail().fill(await readAndWriteExcel.readValue('companyPrimaryEmail'));
       
@@ -45,7 +44,8 @@ test.describe('Account Creation for Company', ()=> {
         await page.waitForLoadState('networkidle')
     
         await accountPage.producerCode().selectOption(await readAndWriteExcel.readValue('producerCode'))
-
+        await page.pause()
+        
         await accountPage.updateButton().click()
         await page.waitForLoadState('networkidle')
         await page.pause()

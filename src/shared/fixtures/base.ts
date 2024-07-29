@@ -5,7 +5,7 @@ import { HomePage } from '../pages/home';
 import { LoginPage } from '../pages/loginPage';
 import { submissionPage } from '../pages/submissionPage';
 import { pageUtils } from '../utils/pageUtils';
-import { ReadAndWriteExcel } from '../utils/read_and_write_excel';
+import { ReadAndWriteExcel } from '../utils/excelUtil';
 
 
 // Declare the types of your fixtures.

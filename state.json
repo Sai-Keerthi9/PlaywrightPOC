@@ -1,0 +1,25 @@
+{
+  "cookies": [
+    {
+      "name": "JSESSIONID-8180",
+      "value": "node01ak1n3v53hfbmoflgrv7s4dtr4.node0",
+      "domain": "localhost",
+      "path": "/pc",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "http://localhost:8180",
+      "localStorage": [
+        {
+          "name": "unsharded:pc:",
+          "value": "{\"WestPanel\":{\"lastActive\":[]},\"formEditValuesById\":{\"1_1\":{}},\"currentEditControllers\":[\"1_1\"],\"scroll\":{},\"gwPanelRef\":{\"\":{\"collapsed\":false}},\"currentFocusSelector\":\"#Login-LoginScreen-LoginDV-submit > .gw-action--inner\",\"lastFocusSelector\":\"[name=\\\"Login-LoginScreen-LoginDV-password\\\"]\"}"
+        }
+      ]
+    }
+  ]
+}

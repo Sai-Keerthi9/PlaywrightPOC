@@ -44,11 +44,8 @@ test.describe('Account Creation for Person', ()=> {
     
         await page.waitForLoadState('networkidle')
         await accountPage.producerCode().selectOption(await readAndWriteExcel.readValue('producerCode'))
-        
-        Promise.all([
-            page.waitForLoadState('networkidle'),
-            accountPage.updateButton().click()
-        ])
+      
+        await accountPage.accountHolderPostCreation().waitFor({state:'visible'})
         
         await expect(await accountPage.accountHolderPostCreation()).toHaveText(await readAndWriteExcel.readAssertionValue('accountHolderName'))
         
