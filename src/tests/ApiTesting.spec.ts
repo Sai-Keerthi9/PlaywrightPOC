@@ -6,7 +6,7 @@ import {LoginPage} from '../shared/pages/loginPage';
 let context;
 const requestPaylode = {"Login-LoginScreen-LoginDV-username": loginData.userName, "Login-LoginScreen-LoginDV-password": loginData.password}
 
-test.describe('Api Testing', ()=>{
+test.describe.only('Api Testing', ()=>{
     test.beforeAll(async({browser})=>{
 
         const newContext = await browser.newContext()
