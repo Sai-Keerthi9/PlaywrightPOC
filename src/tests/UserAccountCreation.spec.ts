@@ -1,12 +1,8 @@
-import accountDetails from '../shared/data/accountDetails.json';
-import loginData from '../shared/data/loginData.json';
 import { expect, test } from '../shared/fixtures/base.ts';
 
 
-
-
-test.describe.only('Account Creation for Person', ()=> {
-    test('Account Creation with full data', async ({ loginPage, accountPage, pageUtils, page, readAndWriteExcel}) => {
+test.describe('Account Creation for Person', ()=> {
+    test('Account Creation with full data', async ({ accountPage, pageUtils, page, readAndWriteExcel}) => {
         
         await page.goto('/pc/PolicyCenter.do');
         await accountPage.accountSubMenu().click();
@@ -40,20 +36,24 @@ test.describe.only('Account Creation for Person', ()=> {
         await accountPage.orgSearch().click();
         await page.waitForLoadState('networkidle')
      
+        await accountPage.organization().click();
         await accountPage.organization().fill(await readAndWriteExcel.readValue('organization'));
         await accountPage.orgNameSearch().click()
         await accountPage.orgSelect().click()
     
         await page.waitForLoadState('networkidle')
         await accountPage.producerCode().selectOption(await readAndWriteExcel.readValue('producerCode'))
-      
-        await accountPage.accountHolderPostCreation().waitFor({state:'visible'})
+        
+        Promise.all([
+            page.waitForLoadState('networkidle'),
+            accountPage.updateButton().click()
+        ])
         
         await expect(await accountPage.accountHolderPostCreation()).toHaveText(await readAndWriteExcel.readAssertionValue('accountHolderName'))
         
     })
 
-    test('Mandate Field Filled Check', async ({ loginPage, pageUtils, accountPage, page , readAndWriteExcel}) => {
+    test('Mandate Field Filled Check', async ({ pageUtils, accountPage, page , readAndWriteExcel}) => {
    
         await page.goto('/pc/PolicyCenter.do');
         await accountPage.accountSubMenu().click();
@@ -75,8 +75,7 @@ test.describe.only('Account Creation for Person', ()=> {
     
     })
 
-    test('Name Of The Account Holder Already Exist', async ({ loginPage, pageUtils, accountPage, page, readAndWriteExcel}) => {
-   
+    test('Name Of The Account Holder Already Exist', async ({ pageUtils, accountPage, page, readAndWriteExcel}) => {
         await page.goto('/pc/PolicyCenter.do');
         await accountPage.accountSubMenu().click();
         await pageUtils.selectDropdown('New Account');
@@ -88,12 +87,12 @@ test.describe.only('Account Creation for Person', ()=> {
         
         await accountPage.searchButton().click()
         await page.waitForLoadState('networkidle')
-    
+
         await expect(accountPage.createdAccountName()).toHaveText(await readAndWriteExcel.readAssertionValue('accountHolderName'))
     })
 
 
-    test('Test to Enter Both Person and Company Details', async ({ loginPage, readAndWriteExcel, pageUtils, accountPage, page }) => {
+    test('Verify Exclusive Entry: Person or Company Details', async ({ readAndWriteExcel, pageUtils, accountPage, page }) => {
        
         await page.goto('/pc/PolicyCenter.do');
         await accountPage.accountSubMenu().click();
@@ -110,8 +109,5 @@ test.describe.only('Account Creation for Person', ()=> {
         await expect(await accountPage.errorMessage()).toHaveText(await readAndWriteExcel.readAssertionValue('companyErrorMsg'));
     
     })
-
-    
-    
 })
 

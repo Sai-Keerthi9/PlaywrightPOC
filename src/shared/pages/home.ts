@@ -15,6 +15,9 @@ export class HomePage {
     account(): Locator {
         return this.page.locator('div[id="TabBar-AccountTab"]')
     }
+    accountSearch() : Locator {
+        return this.page.locator('input[name*="AccountTab_AccountNumberSearchItem"]');
+    }
     policy(): Locator {
         return this.page.locator('div[id="TabBar-PolicyTab"]')
     }

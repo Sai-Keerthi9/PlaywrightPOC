@@ -23,16 +23,34 @@
         "errorMsg": "Please specify either a company name or a person name, but not both."
     },
     "companyAccount" : {
-        "CompanyName" : "Quantum Leap",
+        "companyName" : "Quantum Leap UK",
         "account" : "Company",
         "officePhone" : "+44 0121 222 3333 x1234",
         "primaryEmail" : "quantumLeap@outlook.com",
         "serviceTier" : "Gold Customer",
         "country" : "United Kingdom",
         "address1" : "London",
-        "town" : "London",
+        "city" : "London",
         "postalCode" : "E1W 2RG",
         "addressType" : "Business",
-        "orgType" : "Common ownership"
+        "orgType" : "Common ownership",
+        "organization" : "ACV Property Insurance",
+        "producerCode" : "ProducerCode:16"
+    },
+    "companyAccountUS" : {
+        "companyName" : "Legal Eagle US",
+        "account" : "Company",
+        "officePhone" : "417 123 4567",
+        "primaryEmail" : "legaleagle@gmail.com",
+        "serviceTier" : "Gold Customer",
+        "country" : "United States",
+        "address1" : "New Heaven",
+        "city" : "New Heaven",
+        "state" : "Missouri",
+        "postalCode" : "63068-0987",
+        "addressType" : "Business",
+        "orgType" : "Limited partnership",
+        "organization" : "ACV Property Insurance",
+        "producerCode" : "ProducerCode:16"
     }
 }

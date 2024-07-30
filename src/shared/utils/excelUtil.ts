@@ -51,7 +51,6 @@ export class ReadAndWriteExcel {
         
     }
 
-
     async readAssertionValue(searchText: string): Promise<string> {
         const worksheet = await this.readExcel();
         let output = { row: -1, column: -1 };

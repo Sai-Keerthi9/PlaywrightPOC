@@ -1,6 +1,6 @@
 import { Locator, Page } from "@playwright/test";
 
-export class pageUtils {
+export class PageUtils {
     page: Page;
     constructor(page: Page) {
         this.page = page;

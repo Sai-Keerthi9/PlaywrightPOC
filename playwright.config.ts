@@ -1,5 +1,4 @@
-import { defineConfig, devices, PlaywrightTestConfig } from '@playwright/test';
-import { on } from 'events';
+import { defineConfig, devices } from '@playwright/test';
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -26,12 +25,14 @@ export default defineConfig( {
   timeout : 30 * 1000,
   
   expect : {timeout : 6 * 1000}, 
-
+  
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     // Base URL to use in actions like `await page.goto('/')`.
     baseURL: 'http://localhost:8180',
-    
+    video: 'on',
+    screenshot: 'on',
+   
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on',
 
@@ -39,29 +40,31 @@ export default defineConfig( {
 
   /* Configure projects for major browsers */
   projects: [
+    // Setup project
+    { name: 'setup', testMatch: /.*\.setup\.ts/ },
+
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'], 
         baseURL: 'http://localhost:8180/pc/PolicyCenter.do',
         viewport : {width: 1250, height: 600},
-      screenshot: 'on',
-    trace: 'retain-on-failure' },
-        
+        storageState: 'playwright/.auth/user.json',
+      },
+      dependencies: ['setup'],
     },
 
     // {
     //   name: 'firefox',
-    //   use: { ...devices['Desktop Firefox'], 
-    //   baseURL: 'http://localhost:8180/pc/PolicyCenter.do',
-    //   viewport : {width: 1250, height: 600},
-    //   screenshot: 'only-on-failure',
-    //   trace: 'retain-on-failure'
-    //    },
+    //   use: { ...devices['Desktop Firefox'],
+    //      storageState: 'playwright/.auth/user.json',
+    //   },
+    //   dependencies: ['setup'],
     // },
 
     // {
     //   name: 'webkit',
     //   use: { ...devices['Desktop Safari'] },
+    //   dependencies: ['setup'],
     // },
 
     /* Test against mobile viewports. */
@@ -92,5 +95,3 @@ export default defineConfig( {
     // reuseExistingServer: !process.env.CI,
  
 });
-
-
