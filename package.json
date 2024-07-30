@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npx playwright test ApiTesting.spec.ts --headed",
-    "Sanity_test": "npx playwright test --grrep @sanity"
+    "Sanity_test": "npx playwright test --grep @sanity"
   },
   "keywords": [],
   "author": "",

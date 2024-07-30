@@ -3,7 +3,9 @@ import loginData from '../shared/data/loginData.json';
 import { expect, test } from '../shared/fixtures/base.ts';
 
 
-test.describe('Account Creation for Person', ()=> {
+
+
+test.describe.only('Account Creation for Person', ()=> {
     test('Account Creation with full data', async ({ loginPage, accountPage, pageUtils, page, readAndWriteExcel}) => {
         
         await page.goto('/pc/PolicyCenter.do');
@@ -108,5 +110,8 @@ test.describe('Account Creation for Person', ()=> {
         await expect(await accountPage.errorMessage()).toHaveText(await readAndWriteExcel.readAssertionValue('companyErrorMsg'));
     
     })
+
+    
+    
 })
 

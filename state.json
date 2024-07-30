@@ -2,7 +2,7 @@
   "cookies": [
     {
       "name": "JSESSIONID-8180",
-      "value": "node018cb59zm90s05q2bzsx0abhyt32.node0",
+      "value": "node01sna38lxtz2d91lsoldxem91zr45.node0",
       "domain": "localhost",
       "path": "/pc",
       "expires": -1,
@@ -16,8 +16,8 @@
       "origin": "http://localhost:8180",
       "localStorage": [
         {
-          "name": "unsharded:pc:su",
-          "value": "{\"WestPanel\":{\"lastActive\":[\"Desktop-MenuLinks-Desktop_Underwriter_MySummary\"]},\"formEditValuesById\":{\"\":{}},\"currentEditControllers\":[\"\"],\"gwPanelRef\":{\"\":{\"collapsed\":false}},\"currentFocusSelector\":\"#Desktop-DesktopMenuActions > .gw-action--inner\"}"
+          "name": "unsharded:pc:",
+          "value": "{\"WestPanel\":{\"lastActive\":[]},\"formEditValuesById\":{\"1_1\":{}},\"currentEditControllers\":[\"1_1\"],\"scroll\":{},\"gwPanelRef\":{\"\":{\"collapsed\":false}},\"currentFocusSelector\":\"#Login-LoginScreen-LoginDV-submit > .gw-action--inner\",\"lastFocusSelector\":\"[name=\\\"Login-LoginScreen-LoginDV-password\\\"]\"}"
         }
       ]
     }
