@@ -1,5 +1,5 @@
 import { Locator, Page } from "@playwright/test";
-import { ReadAndWriteExcel } from "../utils/read_and_write_excel";
+import { ReadAndWriteExcel } from "../utils/excelUtil";
 
 export class AccountPage {
     page: Page;

@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "tests": "npx playwright test --workers=1"
+    "test": "npx playwright test ApiTesting.spec.ts --headed",
+    "Sanity_test": "npx playwright test --grep @sanity"
   },
   "keywords": [],
   "author": "",
@@ -13,10 +14,12 @@
     "@nx/playwright": "19.5.2",
     "@playwright/test": "^1.45.3",
     "@types/node": "^20.14.11",
+    "allure-playwright": "^3.0.0-beta.7",
     "nx": "19.5.2"
   },
   "nx": {},
   "dependencies": {
+    "allure": "^0.0.0",
     "exceljs": "^4.4.0"
   }
 }
