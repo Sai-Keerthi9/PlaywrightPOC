@@ -20,11 +20,7 @@ type MyFixtures = {
 
 export const test = base.extend<MyFixtures>({
     loginPage: async ({ page }, use) => {
-        const loginPage = new LoginPage(page);
-        await loginPage.login();
-        
-        // Use the fixture value in the test.
-        await use(loginPage);
+        await use(new LoginPage(page));
     },
     homePage: async ({ page }, use) => {
         await use(new HomePage(page));

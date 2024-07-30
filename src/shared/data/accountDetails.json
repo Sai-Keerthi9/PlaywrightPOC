@@ -23,7 +23,7 @@
         "errorMsg": "Please specify either a company name or a person name, but not both."
     },
     "companyAccount" : {
-        "CompanyName" : "Quantum Leap UK",
+        "companyName" : "Quantum Leap UK",
         "account" : "Company",
         "officePhone" : "+44 0121 222 3333 x1234",
         "primaryEmail" : "quantumLeap@outlook.com",
@@ -38,7 +38,7 @@
         "producerCode" : "ProducerCode:16"
     },
     "companyAccountUS" : {
-        "CompanyName" : "Legal Eagle US",
+        "companyName" : "Legal Eagle US",
         "account" : "Company",
         "officePhone" : "417 123 4567",
         "primaryEmail" : "legaleagle@gmail.com",

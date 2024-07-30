@@ -2,7 +2,7 @@ import { expect, test } from '../shared/fixtures/base.ts';
 
 
 test.describe('Account Creation for Person', ()=> {
-    test('Account Creation with full data', async ({ loginPage, accountPage, pageUtils, page, readAndWriteExcel}) => {
+    test('Account Creation with full data', async ({ accountPage, pageUtils, page, readAndWriteExcel}) => {
         
         await page.goto('/pc/PolicyCenter.do');
         await accountPage.accountSubMenu().click();
@@ -36,6 +36,7 @@ test.describe('Account Creation for Person', ()=> {
         await accountPage.orgSearch().click();
         await page.waitForLoadState('networkidle')
      
+        await accountPage.organization().click();
         await accountPage.organization().fill(await readAndWriteExcel.readValue('organization'));
         await accountPage.orgNameSearch().click()
         await accountPage.orgSelect().click()
@@ -52,7 +53,7 @@ test.describe('Account Creation for Person', ()=> {
         
     })
 
-    test('Mandate Field Filled Check', async ({ loginPage, pageUtils, accountPage, page , readAndWriteExcel}) => {
+    test('Mandate Field Filled Check', async ({ pageUtils, accountPage, page , readAndWriteExcel}) => {
    
         await page.goto('/pc/PolicyCenter.do');
         await accountPage.accountSubMenu().click();
@@ -74,8 +75,7 @@ test.describe('Account Creation for Person', ()=> {
     
     })
 
-    test('Name Of The Account Holder Already Exist', async ({ loginPage, pageUtils, accountPage, page, readAndWriteExcel}) => {
-   
+    test('Name Of The Account Holder Already Exist', async ({ pageUtils, accountPage, page, readAndWriteExcel}) => {
         await page.goto('/pc/PolicyCenter.do');
         await accountPage.accountSubMenu().click();
         await pageUtils.selectDropdown('New Account');
@@ -87,12 +87,12 @@ test.describe('Account Creation for Person', ()=> {
         
         await accountPage.searchButton().click()
         await page.waitForLoadState('networkidle')
-    
+
         await expect(accountPage.createdAccountName()).toHaveText(await readAndWriteExcel.readAssertionValue('accountHolderName'))
     })
 
 
-    test('Verify Exclusive Entry: Person or Company Details', async ({ loginPage, readAndWriteExcel, pageUtils, accountPage, page }) => {
+    test('Verify Exclusive Entry: Person or Company Details', async ({ readAndWriteExcel, pageUtils, accountPage, page }) => {
        
         await page.goto('/pc/PolicyCenter.do');
         await accountPage.accountSubMenu().click();

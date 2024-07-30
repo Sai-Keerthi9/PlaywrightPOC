@@ -2,59 +2,61 @@ import accountDetails from '../shared/data/accountDetails.json';
 import { expect, test } from '../shared/fixtures/base.ts';
 
 test.describe('Account Creation for Company', ()=> {
-    test('Account Creation with UK data', async ({ loginPage, pageUtils, accountPage, page, readAndWriteExcel }) => {
+    test('Account Creation with UK data', async ({ pageUtils, accountPage, page }) => {
         await page.goto('/pc/PolicyCenter.do');
         await accountPage.accountSubMenu().click();
         await pageUtils.selectDropdown('New Account');
     
-        await page.waitForLoadState('networkidle');
-        await accountPage.company().fill(await readAndWriteExcel.readValue('CompanyName'));
+        await accountPage.pageTitle().getByText('Enter Account Information').waitFor({state:'visible'});
+        await accountPage.company().fill(accountDetails.companyAccount.companyName);
 
         await accountPage.searchButton().click()
-        await page.waitForLoadState('networkidle')
         
-        await accountPage.createAccount().scrollIntoViewIfNeeded();
+        await accountPage.createAccount().waitFor({state:'visible'});
         await accountPage.createAccount().click();
-        await pageUtils.selectDropdown(await readAndWriteExcel.readValue('account'));
+        await pageUtils.selectDropdown(accountDetails.companyAccount.account);
         
-        await accountPage.officePhone().fill(await readAndWriteExcel.readValue('companyOfficePhone'));
-        await accountPage.primaryEmail().fill(await readAndWriteExcel.readValue('companyPrimaryEmail'));
+        await accountPage.officePhone().fill(accountDetails.companyAccount.officePhone);
+        await accountPage.primaryEmail().fill(accountDetails.companyAccount.primaryEmail);
         
         await page.waitForLoadState('load');
         const responsePromise = page.waitForResponse(response =>
             response.url() === 'http://localhost:8180/pc/PolicyCenter.do' && response.status() === 200
                 && response.request().resourceType() === 'fetch'
         );
-        await accountPage.country().nth(0).selectOption(await readAndWriteExcel.readValue('companyCountry'))
+        await accountPage.country().nth(0).selectOption(accountDetails.companyAccount.country)
         await responsePromise;
         
-        await accountPage.addressLine1().fill(await readAndWriteExcel.readValue('companyAddress1'));
-        await accountPage.city().fill(await readAndWriteExcel.readValue('companyTown'));
+        await accountPage.addressLine1().fill(accountDetails.companyAccount.address1);
+        await accountPage.city().fill(accountDetails.companyAccount.city);
         await page.waitForLoadState('networkidle')
             
-        await accountPage.postalCode().fill(await readAndWriteExcel.readValue('companyPostalCode'))
+        await accountPage.postalCode().fill(accountDetails.companyAccount.postalCode)
             
-        await accountPage.addressType().selectOption(await readAndWriteExcel.readValue('companyAddressType'));
-        await accountPage.orgType().selectOption(await readAndWriteExcel.readValue('companyOrgType'));
-            
+        await accountPage.addressType().selectOption(accountDetails.companyAccount.addressType);
+        await accountPage.orgType().selectOption(accountDetails.companyAccount.orgType);
+        
+        await page.waitForLoadState('load')
+        
         await accountPage.orgSearch().click();
-        await page.waitForLoadState('networkidle')
-        await accountPage.organization().fill(await readAndWriteExcel.readValue('organization'));
+        await accountPage.orgPageTitle().waitFor({state:'visible'});
+        await accountPage.organization().fill(accountDetails.companyAccount.organization);
         await accountPage.orgNameSearch().click()
         await accountPage.orgSelect().click()
         await page.waitForLoadState('networkidle')
         
-        await accountPage.producerCode().selectOption(await readAndWriteExcel.readValue('producerCode'))
+        await accountPage.producerCode().selectOption(accountDetails.companyAccount.producerCode)
 
         await accountPage.updateButton().click()
         await page.waitForLoadState('networkidle')
         
-        await expect(await accountPage.accountHolderPostCreation()).toHaveText(await readAndWriteExcel.readValue('CompanyName'))
+        await expect(await accountPage.accountHolderPostCreation()).toHaveText(accountDetails.companyAccount.companyName)
     })
-    test('Account Creation with US data', async ({ loginPage, accountPage, page }) => {
+    test('Account Creation with US data', async ({ homePage, readAndWriteExcel, accountPage, page }) => {
         await page.goto('/pc/PolicyCenter.do');
+        await homePage.pageTitle().waitFor({state: 'visible'});
         
-        let accNumber = await accountPage.createNewAccount(accountDetails.companyAccountUS);
+        let accNumber = await accountPage.createNewAccount(readAndWriteExcel);
         console.log(accNumber);
     })
 })
