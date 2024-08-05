@@ -7,6 +7,7 @@ import { SubmissionPage } from '../pages/submissionPage';
 import { ReadAndWriteExcel } from '../utils/excelUtil';
 import { PageUtils } from '../utils/pageUtils';
 import { IntegrationGateway } from '../apis/integrationGateway';
+import { AccountAPI } from '../apis/accountApi';
 
 // Declare the types of your fixtures.
 type MyFixtures = {
@@ -17,6 +18,7 @@ type MyFixtures = {
     readAndWriteExcel: ReadAndWriteExcel;
     submissionPage: SubmissionPage;
     integrationGateway: IntegrationGateway;
+    accountApi: AccountAPI;
 };
 
 export const test = base.extend<MyFixtures>({
@@ -40,6 +42,9 @@ export const test = base.extend<MyFixtures>({
     },
     integrationGateway: async({request}, use) => {
         await use(new IntegrationGateway(request));
+    },
+    accountApi: async({request}, use) => {
+        await use(new AccountAPI(request));
     }
 });
 export { expect } from '@playwright/test';

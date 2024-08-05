@@ -8,23 +8,22 @@ test.describe.only('API Testing through Integration Gateway', ()=> {
         const resJson = await response.json();
 
         await integrationGateway.saveToFile('getAccountsAllDetails.json', resJson);
-        expect(resJson.count).toBe(25);
         expect(response.status()).toBe(200);
+        expect(resJson.count).toBe(25);
     })
     test('Retreive Account with Account Number API', async ({ integrationGateway }) => {
         const response = await integrationGateway.getAccountfromAcctNumber('C000212105');
         const resJson:any = await response.json();
         
         await integrationGateway.saveToFile('getAccountfromAcctNumber.json', resJson);
-        expect(await resJson.data[0].attributes.accountHolder.displayName).toBe('Wright Construction');
         expect(response.status()).toBe(200);
+        expect(await resJson.data[0].attributes.accountHolder.displayName).toBe('Wright Construction');
     })
-    test.only('Create Account', async ({ integrationGateway }) => {
+    test('Create Account', async ({ integrationGateway }) => {
         const response = await integrationGateway.createAccountAPi('Fancy Feathers');
         const resJson:any = await response.json();
         
         await integrationGateway.saveToFile('createAccountRes.json', resJson);
-
         expect(response.status()).toBe(200);
     })
 })

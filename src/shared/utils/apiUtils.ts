@@ -36,8 +36,8 @@ export abstract class ApiUtils {
         payload.data.attributes.initialAccountHolder.companyName = companyName;
     }
 
-    async sendGetRequest(url: string): Promise<any> {
-        return await this.request.get(url)
+    async sendGetRequest(url: string, headers?: {[key:string]:string}): Promise<any> {
+        return await this.request.get(url, {headers: headers})
     }
 
     async sendPostRequest(url: string, request: any): Promise<any> {
