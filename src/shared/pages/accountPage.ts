@@ -76,15 +76,12 @@ export class AccountPage {
         await this.company().fill(companyName);
         
         await this.searchButton().click()
-        await this.page.waitForResponse(response =>
-            response.url() === 'http://localhost:8180/pc/PolicyCenter.do' && response.status() === 200
-                && response.request().resourceType() === 'fetch'
-        );
+        await this.createAccount().waitFor({state:'visible'});
        
         if(await this.searchResults().isVisible()) {
             return await this.searchResultAccNum().first().innerText();
         }
-        await this.createAccount().scrollIntoViewIfNeeded();
+        await this.createAccount().waitFor({state:'visible'})
         await this.createAccount().click();
         await this.dropdown().getByText(await excel.readValue('account')).click();
         
@@ -108,7 +105,7 @@ export class AccountPage {
     
         await this.addressType().selectOption(await excel.readValue('companyAddressType'));
         await this.orgType().selectOption(await excel.readValue('companyOrgType'));
-            
+        
         await this.page.waitForLoadState('load')
         await this.orgSearch().click();
 

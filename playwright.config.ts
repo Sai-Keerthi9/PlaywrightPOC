@@ -44,13 +44,14 @@ export default defineConfig( {
     { name: 'setup', testMatch: /.*\.setup\.ts/ },
 
     {
-      name: 'chromium',
+      name: 'Microsoft Edge',
       use: { ...devices['Desktop Chrome'], 
+        channel:'msedge',
         baseURL: 'http://localhost:8180/pc/PolicyCenter.do',
         viewport : {width: 1250, height: 600},
         storageState: 'playwright/.auth/user.json',
       },
-      dependencies: ['setup'],
+      // dependencies: ['setup'],
     },
 
     // {

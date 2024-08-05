@@ -23,10 +23,10 @@
         "errorMsg": "Please specify either a company name or a person name, but not both."
     },
     "companyAccount" : {
-        "companyName" : "Quantum Leap UK",
+        "companyName" : "Digital Dreams UK",
         "account" : "Company",
         "officePhone" : "+44 0121 222 3333 x1234",
-        "primaryEmail" : "quantumLeap@outlook.com",
+        "primaryEmail" : "digitalDreams@outlook.com",
         "serviceTier" : "Gold Customer",
         "country" : "United Kingdom",
         "address1" : "London",
@@ -38,10 +38,10 @@
         "producerCode" : "ProducerCode:16"
     },
     "companyAccountUS" : {
-        "companyName" : "Legal Eagle US",
+        "companyName" : "Green Goodness US",
         "account" : "Company",
         "officePhone" : "417 123 4567",
-        "primaryEmail" : "legaleagle@gmail.com",
+        "primaryEmail" : "greengoodness@gmail.com",
         "serviceTier" : "Gold Customer",
         "country" : "United States",
         "address1" : "New Heaven",

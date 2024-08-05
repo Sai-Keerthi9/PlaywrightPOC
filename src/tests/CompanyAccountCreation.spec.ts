@@ -2,8 +2,10 @@ import accountDetails from '../shared/data/accountDetails.json';
 import { expect, test } from '../shared/fixtures/base.ts';
 
 test.describe('Account Creation for Company', ()=> {
-    test('Account Creation with UK data', async ({ pageUtils, accountPage, page }) => {
+    test('Account Creation with UK data', async ({ homePage, pageUtils, accountPage, page }) => {
         await page.goto('/pc/PolicyCenter.do');
+        await homePage.pageTitle().waitFor({state: 'visible'});
+
         await accountPage.accountSubMenu().click();
         await pageUtils.selectDropdown('New Account');
     
@@ -29,7 +31,7 @@ test.describe('Account Creation for Company', ()=> {
         
         await accountPage.addressLine1().fill(accountDetails.companyAccount.address1);
         await accountPage.city().fill(accountDetails.companyAccount.city);
-        await page.waitForLoadState('networkidle')
+        await page.waitForLoadState('load')
             
         await accountPage.postalCode().fill(accountDetails.companyAccount.postalCode)
             

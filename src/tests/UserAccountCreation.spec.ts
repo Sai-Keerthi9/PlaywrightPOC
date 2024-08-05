@@ -18,9 +18,8 @@ test.describe('Account Creation for Person', ()=> {
         await accountPage.postalCode().fill(await readAndWriteExcel.readValue('postalCode'));
        
         await accountPage.searchButton().click()
-        await page.waitForLoadState('networkidle')
 
-        await accountPage.createAccount().scrollIntoViewIfNeeded();
+        await accountPage.createAccount().waitFor({state:'visible'});
         await accountPage.createAccount().click();
         await pageUtils.selectDropdown(await readAndWriteExcel.readValue('accountType'));
     

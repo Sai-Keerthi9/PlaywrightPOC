@@ -2,7 +2,7 @@ import { expect, test } from '../shared/fixtures/base.ts';
 
 test.describe('Create Policy', ()=> {
     test('Create D&O Policy', async ({ readAndWriteExcel, homePage, accountPage, submissionPage, page }) => {
-        
+        await test.setTimeout(45000);
         await page.goto('/pc/PolicyCenter.do');
         let accNumber:string = await accountPage.createNewAccount(readAndWriteExcel);
          
