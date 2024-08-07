@@ -1,6 +1,5 @@
 import { Locator, Page } from "@playwright/test";
 
-const authFile = 'playwright/.auth/user.json';
 export class LoginPage {
     public page: Page;
 

@@ -2,7 +2,7 @@ import { expect, test } from '../shared/fixtures/base.ts';
 
 test.use({ storageState: { cookies: [], origins: [] } });
 
-test.describe.only('API Testing through Integration Gateway', ()=> {
+test.describe('API Testing through Integration Gateway', ()=> {
     test('Retreive All Accounts API', async ({ integrationGateway }) => {
         const response = await integrationGateway.getAccountsAllDetails();
         const resJson = await response.json();

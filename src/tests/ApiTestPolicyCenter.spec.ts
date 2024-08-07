@@ -2,7 +2,7 @@ import { expect, test } from '../shared/fixtures/base.ts';
 
 test.use({ storageState: { cookies: [], origins: [] } });
 
-test.describe.only('API Testing of Policy Center', ()=> {
+test.describe('API Testing of Policy Center', ()=> {
     test('Retreive Account with Account Number API', async ({ accountApi }) => {
         const response = await accountApi.getAccount('C000212105');
         const resJson:any = await response.json();

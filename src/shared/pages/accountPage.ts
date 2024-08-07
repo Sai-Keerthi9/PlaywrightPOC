@@ -81,12 +81,12 @@ export class AccountPage {
         if(await this.searchResults().isVisible()) {
             return await this.searchResultAccNum().first().innerText();
         }
-        await this.createAccount().waitFor({state:'visible'})
+        await this.createAccount().hover();
         await this.createAccount().click();
         await this.dropdown().getByText(await excel.readValue('account')).click();
         
         await this.officePhone().fill(await excel.readValue('companyOfficePhone'));
-        await this.primaryEmail().fill(await excel.readValue('companyPrimaryEmail'));
+        await this.primaryEmail().fill((await excel.readValue('companyPrimaryEmail'))+'@gmail.com');
         
         await this.page.waitForLoadState('load');
         const apiResPromise = this.page.waitForResponse(response =>
